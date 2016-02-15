@@ -183,11 +183,11 @@ angular.module('starter.recordController', [])
               $ionicHistory.nextViewOptions({
                 disableBack: true
               });
-              $state.go("home");
+              $state.go("app.playlists");
             });
 
           }, function(e) {
-            console.log('error in coipy');console.dir(e);
+            console.log('error in copy');console.dir(e);
           });
         }, function(e) {
           console.log("error in inner bullcrap");

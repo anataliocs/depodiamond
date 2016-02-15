@@ -102,9 +102,9 @@ angular.module('starter.services', [])
          On iOS, we need to rewrite to ../Library/NoCloud/FILE'
          */
         var mediaUrl = sound.file;
-        if(device.platform.indexOf("iOS") >= 0) {
+/*        if(device.platform.indexOf("iOS") >= 0) {
           mediaUrl = "../Library/NoCloud/" + mediaUrl.split("/").pop();
-        }
+        }*/
         var media = new Media(mediaUrl, function(e) {
           media.release();
         }, function(err) {
