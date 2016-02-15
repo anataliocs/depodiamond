@@ -1,9 +1,29 @@
-<ion-view view-title="Playlists">
-  <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item>
-    </ion-list>
+<ion-view view-title="Record Deposition">
+
+  <ion-content class="padding">
+
+    <div ng-if="sounds.length > 0">
+      <ion-list show-delete="false" can-swipe="true">
+        <ion-item ng-repeat="sound in sounds" ng-click="play($index)">
+          {{sound.name}}
+
+          <ion-option-button class="button-assertive" ng-click="delete($index)">
+            Delete
+          </ion-option-button>
+
+        </ion-item>
+      </ion-list>
+    </div>
+    <div ng-if="sounds.length < 1">
+      <p>
+        No depositions recorded.
+      </p>
+    </div>
+
+    <a href="#/new" class="button button-balanced button-block">
+      Record New Deposition
+    </a>
+
   </ion-content>
+
 </ion-view>

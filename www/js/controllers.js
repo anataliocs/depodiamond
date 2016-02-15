@@ -41,16 +41,48 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+  .controller('PlaylistsCtrl', function($scope, Sounds, $ionicPlatform) {
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+    var getSounds = function() {
+      console.log('getSounds called');
+      Sounds.get().then(function(sounds) {
+        console.dir(sounds);
+        $scope.sounds = sounds;
+      });
+    }
+
+    $scope.$on('$ionicView.enter', function(){
+      console.log('enter');
+      getSounds();
+    });
+
+    $scope.play = function(x) {
+      console.log('play', x);
+      Sounds.play(x);
+    }
+
+    $scope.delete = function(x) {
+      console.log('delete', x);
+      Sounds.get().then(function(sounds) {
+        var toDie = sounds[x];
+        window.resolveLocalFileSystemURL(toDie.file, function(fe) {
+          fe.remove(function() {
+            Sounds.delete(x).then(function() {
+              getSounds();
+            });
+          }, function(err) {
+            console.log("err cleaning up file", err);
+          });
+        });
+      });
+    }
+
+    $scope.cordova = {loaded:false};
+    $ionicPlatform.ready(function() {
+      $scope.$apply(function() {
+        $scope.cordova.loaded = true;
+      });
+    });
+
+  })
+
