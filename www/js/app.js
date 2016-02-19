@@ -4,6 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.recordController', 'starter.services'])
 
 .run(function($ionicPlatform) {
@@ -19,6 +20,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.recordContro
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+/*    var APP_ID = "parse-depo-backend";
+    var MASTER_KEY = "abebcb360df28c5895b75d7782a1afd2";
+
+    Parse.initialize(APP_ID, "",MASTER_KEY);
+    Parse.serverURL = 'https://parse-depo-backend.herokuapp.com';
+
+    var user = new Parse.User();
+    user.set("username", "my name");
+    user.set("password", "my pass");
+    user.set("email", "email@example.com");
+
+
+    user.set("phone", "650-555-0000");*/
   });
 })
 
